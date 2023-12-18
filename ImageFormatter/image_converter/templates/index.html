@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Image Converter</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <select name="format">
+            <option value="JPG">JPG</option>
+            <option value="PNG">PNG</option>
+            <option value="BMP">BMP</option>
+            <option value="GIF">GIF</option>
+            <option value="HEIF">HEIF</option> <!-- Added HEIF option -->
+        </select>
+        <input type="submit" value="Convert">
+    </form>
+    {% if filename %}
+        <p>File converted! Click below to download:</p>
+        <a href="{{ url_for('download_file', filename=filename) }}">Download {{ filename }}</a>
+    {% endif %}
+</body>
+</html>
